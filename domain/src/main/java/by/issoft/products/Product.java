@@ -1,4 +1,4 @@
-package products;
+package by.issoft.products;
 
 public class Product {
 

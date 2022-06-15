@@ -1,11 +1,10 @@
 import com.github.javafaker.Faker;
-import categories.CategoryList;
-import products.Product;
+import by.issoft.categories.CategoryList;
 
 public class RandomStorePopulator {
 
 
-    Faker faker = new Faker();
+    private Faker faker = new Faker();
 
     public String getProductName(CategoryList category){
         switch (category) {

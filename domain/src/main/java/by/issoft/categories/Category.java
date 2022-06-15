@@ -1,4 +1,4 @@
-package categories;
+package by.issoft.categories;
 
 
 public class Category {
