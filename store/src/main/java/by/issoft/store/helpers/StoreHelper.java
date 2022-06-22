@@ -1,13 +1,36 @@
-import by.issoft.categories.Category;
+package by.issoft.store.helpers;
+
+import by.issoft.domain.Category;
+import by.issoft.products.Product;
+import by.issoft.store.Store;
 import org.reflections.Reflections;
+
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
+
+public class StoreHelper {
+
+    Store store;
+
+    public StoreHelper(Store store) {
+        this.store = store;
+    }
 
 
-public class Store {
+    public List<Product> fillStore(Category category){
+
+        List<Product> productList = new ArrayList<>();
+        RandomStorePopulator populator = new RandomStorePopulator();
+
+        //does not work as expected
+        productList.add(new Product(populator.getProductName("Milk"),
+                   populator.getProductPrice(),
+                   populator.getProductRate()));
+
+
+        return productList;
+
+    }
 
     public static Map<Category, Integer> createCategoryMap() {
         Map<Category, Integer> categoryToPut = new HashMap<>();
@@ -32,10 +55,6 @@ public class Store {
         }
         return categoryToPut;
     }
+
+
 }
-
-
-
-
-
-
