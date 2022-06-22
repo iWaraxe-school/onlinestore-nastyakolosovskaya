@@ -1,18 +1,22 @@
+package by.issoft.store.helpers;
+
+import by.issoft.products.Product;
 import com.github.javafaker.Faker;
-import by.issoft.categories.CategoryList;
+
+import java.util.Random;
 
 public class RandomStorePopulator {
 
 
     private Faker faker = new Faker();
 
-    public String getProductName(CategoryList category){
-        switch (category) {
-            case Bike:
+    public String getProductName(String categoryName){
+        switch (categoryName) {
+            case "BikeCategory":
                 return faker.superhero().power();
-            case Milk:
+            case "MilkCategory":
                 return faker.food().ingredient();
-            case Phone:
+            case "PhoneCategory":
                 return faker.pokemon().name();
             default:
                 return "Unknown category";
@@ -27,5 +31,4 @@ public class RandomStorePopulator {
     public Double getProductRate(){
         return Double.valueOf(faker.number().numberBetween(0,10));
     }
-
 }
