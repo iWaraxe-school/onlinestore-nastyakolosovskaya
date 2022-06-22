@@ -6,7 +6,7 @@ public class Product {
     private final double rate;
     private final double price;
 
-    public Product(String name, int rate, double price) {
+    public Product(String name, Double rate, double price) {
         this.name = name;
         this.rate = rate;
         this.price = price;
@@ -24,4 +24,14 @@ public class Product {
         return price;
     }
 
+    @Override
+    public String toString() {
+        return String.format("Product name: , Product price: , Product rate: ", name, rate, price);
+    }
+
+    public void getInfo(Product product) {
+        System.out.println("Product name: " + product.getName() + " " +
+                "Product price: " + product.getPrice() + " " +
+                "Product rate: " + product.getRate());
+    }
 }
