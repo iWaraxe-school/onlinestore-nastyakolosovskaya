@@ -5,11 +5,11 @@ import by.issoft.domain.Category;
 public class MilkCategory extends Category {
 
     public MilkCategory() {
-        super("Milk");
+        super("Milk category");
     }
 
     @Override
     public String getCategoryName() {
-        return "Milk";
+        return "Milk category";
     }
 }
