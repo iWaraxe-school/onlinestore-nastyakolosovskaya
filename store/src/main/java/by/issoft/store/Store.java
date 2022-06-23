@@ -14,6 +14,13 @@ public class Store {
         categoryList.add(category);
     }
 
+    public void printStore(){
+        System.out.println("Welcome to Online Store!");
+        for (Category category:categoryList) {
+            category.printCategory();
+        }
+    }
+
 }
 
 
