@@ -6,7 +6,10 @@ import by.issoft.store.Store;
 import org.reflections.Reflections;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 
 public class StoreHelper {
 
@@ -16,45 +19,40 @@ public class StoreHelper {
         this.store = store;
     }
 
+        public void fillStore() {
 
-    public List<Product> fillStore(Category category){
-
-        List<Product> productList = new ArrayList<>();
         RandomStorePopulator populator = new RandomStorePopulator();
+        Map<Category, Integer> categoryMap = createCategoryMap();
 
-        //does not work as expected
-        productList.add(new Product(populator.getProductName("Milk"),
-                   populator.getProductPrice(),
-                   populator.getProductRate()));
+        for (Map.Entry<Category, Integer> entry : categoryMap.entrySet()) {
+            Category category = entry.getKey();
+            Integer numberOfProducts = entry.getValue();
+            for (int i = 0; i < numberOfProducts; i++) {
 
-
-        return productList;
-
+                Product product = new Product(populator.getProductName(category.getCategoryName()),
+                        populator.getProductPrice(),
+                        populator.getProductRate());
+                category.addProductToCategory(product);
+            }
+            store.addCategoryToList(category);
+        }
     }
 
     public static Map<Category, Integer> createCategoryMap() {
-        Map<Category, Integer> categoryToPut = new HashMap<>();
+        Map<Category, Integer> categoryMap = new HashMap<>();
 
-        Reflections reflections = new Reflections("com.issoft.domain.categories");
+        Reflections reflections = new Reflections("by.issoft.domain.categories");
 
         Set<Class<? extends Category>> subTypes = reflections.getSubTypesOf(Category.class);
 
         for (Class<? extends Category> type : subTypes) {
             try {
                 Random random = new Random();
-                categoryToPut.put(type.getConstructor().newInstance(), random.nextInt(10));
-            } catch (NoSuchMethodException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
+                categoryMap.put(type.getConstructor().newInstance(), random.nextInt( 10)+1);
+            } catch (NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
             }
         }
-        return categoryToPut;
+        return categoryMap;
     }
-
-
 }
