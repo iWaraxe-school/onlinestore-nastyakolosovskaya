@@ -12,20 +12,19 @@ public class RandomStorePopulator {
 
     public String getProductName(String categoryName){
         switch (categoryName) {
-            case "BikeCategory":
+            case "Bike category":
                 return faker.superhero().power();
-            case "MilkCategory":
-                return faker.food().ingredient();
-            case "PhoneCategory":
+            case "Milk category":
+                return faker.programmingLanguage().name();
+            case "Phone category":
                 return faker.pokemon().name();
             default:
-                return "Unknown category";
+                return "Other categories";
         }
     }
 
     public Double getProductPrice (){
         return faker.number().randomDouble(2,1,1000);
-
     }
 
     public Double getProductRate(){
