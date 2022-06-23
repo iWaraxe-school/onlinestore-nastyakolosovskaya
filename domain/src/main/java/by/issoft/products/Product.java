@@ -6,10 +6,10 @@ public class Product {
     private final double rate;
     private final double price;
 
-    public Product(String name, Double rate, double price) {
+    public Product(String name, double price, Double rate) {
         this.name = name;
-        this.rate = rate;
         this.price = price;
+        this.rate = rate;
     }
 
     public String getName() {
@@ -29,9 +29,9 @@ public class Product {
         return String.format("Product name: , Product price: , Product rate: ", name, rate, price);
     }
 
-    public void getInfo(Product product) {
-        System.out.println("Product name: " + product.getName() + " " +
-                "Product price: " + product.getPrice() + " " +
-                "Product rate: " + product.getRate());
+    public void getInfo() {
+        System.out.println("Product name: " + this.getName() + ", " +
+                "Product price: " + this.getPrice() + ", " +
+                "Product rate: " + this.getRate());
     }
 }
