@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Category {
 
-    final String categoryName;
+    private final String categoryName;
     private List<Product> productList = new ArrayList<>();
 
     public Category(String categoryName) {
@@ -28,7 +28,10 @@ public class Category {
     public void addProductToCategory(Product product){
         productList.add(product);
     }
-    public void printCategory(Category categoryName){
-        System.out.println(categoryName);
+    public void printCategory(){
+        System.out.println(categoryName + ":");
+        for (Product product: productList) {
+            product.getInfo();
+        }
     }
 }
