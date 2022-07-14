@@ -11,59 +11,48 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.stream.Stream;
 
 public class XmlParser {
 
-         public Map<String, String> xmlParser() {
-        XmlParser xmlParser = new XmlParser();
+    private final String PATH = "store/src/main/resources/config.xml";
+
+    public Map<String, String> xmlParser() throws ParserConfigurationException {
+        String sortTag = "sort";
+        Map<String, String> configMap = new LinkedHashMap<>();
+
+        DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+
         try {
-            FileInputStream file = new FileInputStream("store/src/main/resources/config.xml");
-            DocumentBuilder documentBuilder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+            FileInputStream file = new FileInputStream(PATH);
             Document doc = documentBuilder.parse(file);
-            Node rootElement = doc.getDocumentElement();
 
-            Map<String, String> configMap = new HashMap<>();
-            NodeList nodeList = doc.getElementsByTagName("sort");
+            Node node = doc.getElementsByTagName(sortTag).item(0);
+            NodeList nodeList = node.getChildNodes();
 
-            for (int itr = 0; itr < nodeList.getLength(); itr++) {
-                Node node = nodeList.item(itr);
-                System.out.println("\nNode Name :" + node.getNodeName());
-                if (node.getNodeType() == Node.ELEMENT_NODE) {
-                    Element eElement = (Element) node;
+            for (int i = 0; i < nodeList.getLength(); i++) {
+
+                Element eElement = (Element) nodeList.item(i);
+                if (nodeList.item(i).getNodeType() == Node.ELEMENT_NODE) {
+
                     System.out.println("Sort name by: " + eElement.getElementsByTagName("name").item(0).getTextContent());
                     System.out.println("Sort price by: " + eElement.getElementsByTagName("price").item(0).getTextContent());
                     System.out.println("Sort rate by: " + eElement.getElementsByTagName("rate").item(0).getTextContent());
+
 
                     String sortField = eElement.getTagName();
                     String sortBy = eElement.getTextContent();
                     configMap.put(sortField, sortBy);
                 }
-                return configMap;
             }
-        } catch (ParserConfigurationException | IOException | SAXException e) {
+
+        } catch (IOException | SAXException e) {
             e.printStackTrace();
         }
-             return null;
-    }
-
-    public static <K, V extends Comparable<? super V>> Map<K, V>
-    sortByValue( Map<K, V> map )
-    {
-        Map<K,V> result = new LinkedHashMap<>();
-        Stream<Map.Entry<K,V>> st = map.entrySet().stream();
-
-        st.sorted(Comparator.comparing(Map.Entry::getValue))
-                .forEach(e ->result.put(e.getKey(),e.getValue()));
-
-        return result;
+        return configMap;
     }
 }
-
 
 
 
