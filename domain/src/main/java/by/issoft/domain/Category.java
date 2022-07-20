@@ -3,6 +3,7 @@ package by.issoft.domain;
 import by.issoft.products.Product;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Category {
@@ -33,5 +34,7 @@ public class Category {
         for (Product product: productList) {
             product.getInfo();
         }
+            productList.sort(Comparator.comparing(Product::getRate));
+
     }
 }
