@@ -16,11 +16,11 @@ public class Product {
         return name;
     }
 
-    public double getRate() {
+    public Double getRate() {
         return rate;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
