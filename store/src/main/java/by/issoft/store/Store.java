@@ -12,6 +12,10 @@ public class Store {
 
     private List<Category> categoryList = new ArrayList<>();
 
+    public List<Category> getCategoryList() {
+        return categoryList;
+    }
+
     public void addCategoryToList(Category category) {
         categoryList.add(category);
     }
@@ -23,7 +27,7 @@ public class Store {
     }
 
     public void printStore() {
-        System.out.println("Welcome to Online Store!");
+        System.out.println("---Welcome to Online Store!---");
         for (Category category : categoryList) {
             category.printCategory();
         }
