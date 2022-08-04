@@ -19,11 +19,15 @@ public class Category {
         return categoryName;
     }
 
-    private List<Category> categoryList = new ArrayList<Category>();
+    private List<Category> categoryList = new ArrayList<>();
 
     public void setCategoryList(List<Category> categoryList) {
         this.categoryList = categoryList;
 
+    }
+
+    public List<Product> getProductList() {
+        return productList;
     }
 
     public void addProductToCategory(Product product){

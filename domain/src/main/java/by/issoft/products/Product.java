@@ -16,17 +16,17 @@ public class Product {
         return name;
     }
 
-    public double getRate() {
+    public Double getRate() {
         return rate;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
     @Override
     public String toString() {
-        return String.format("Product name: , Product price: , Product rate: ", name, rate, price);
+        return String.format("Product name: '%s', Product price: '%s', Product rate: '%s'", name, price, rate);
     }
 
     public void getInfo() {
