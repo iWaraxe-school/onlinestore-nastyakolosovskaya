@@ -11,7 +11,7 @@ public class StoreApp {
 
     public static void main(String[] args) throws ParserConfigurationException {
 
-        Store onlineStore = new Store();
+        Store onlineStore = Store.getInstance();
         StoreHelper storeHelper = new StoreHelper(onlineStore);
         SortHelper sortHelper = new SortHelper(onlineStore);
         storeHelper.fillStore();

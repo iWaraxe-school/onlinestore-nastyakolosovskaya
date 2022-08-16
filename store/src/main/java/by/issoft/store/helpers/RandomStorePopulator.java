@@ -8,7 +8,7 @@ import java.util.Random;
 public class RandomStorePopulator {
 
 
-    private Faker faker = new Faker();
+    private final Faker faker = new Faker();
 
     public String getProductName(String categoryName){
         switch (categoryName) {
