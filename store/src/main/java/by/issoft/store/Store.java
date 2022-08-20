@@ -16,7 +16,7 @@ public class Store {
         return categoryList;
     }
 
-        private Store(){}
+        public Store(){}
 
         private static class SingletonHelper{
             private static final Store STORE_INSTANCE = new Store();
@@ -25,23 +25,6 @@ public class Store {
         public static Store getInstance(){
             return SingletonHelper.STORE_INSTANCE;
         }
-
-
-    /*private static Store StoreObject;
-
-    private Store() {
-    }
-
-    public static Store getInstance() {
-
-        // create object if it's not already created
-        if(StoreObject == null) {
-            StoreObject = new Store();
-        }
-
-        // returns the singleton object
-        return StoreObject;
-    }*/
 
     public void addCategoryToList(Category category) {
         categoryList.add(category);

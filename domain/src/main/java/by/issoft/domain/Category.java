@@ -34,6 +34,7 @@ public class Category {
         productList.add(product);
     }
     public void printCategory(){
+        System.out.println();
         System.out.println(categoryName + ":");
         for (Product product: productList) {
             product.getInfo();
