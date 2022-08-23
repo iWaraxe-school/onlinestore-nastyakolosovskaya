@@ -9,7 +9,7 @@ import java.util.List;
 public class Category {
 
     private final String categoryName;
-    private List<Product> productList = new ArrayList<>();
+    private final List<Product> productList = new ArrayList<>();
 
     public Category(String categoryName) {
         this.categoryName = categoryName;
@@ -34,6 +34,7 @@ public class Category {
         productList.add(product);
     }
     public void printCategory(){
+        System.out.println();
         System.out.println(categoryName + ":");
         for (Product product: productList) {
             product.getInfo();

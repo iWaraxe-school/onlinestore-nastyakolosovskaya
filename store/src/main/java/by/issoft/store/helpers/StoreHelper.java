@@ -29,9 +29,11 @@ public class StoreHelper {
             Integer numberOfProducts = entry.getValue();
             for (int i = 0; i < numberOfProducts; i++) {
 
-                Product product = new Product(populator.getProductName(category.getCategoryName()),
-                        populator.getProductPrice(),
-                        populator.getProductRate());
+                Product product = Product.newProductBuilder()
+                        .setName(populator.getProductName(category.getCategoryName()))
+                        .setPrice(populator.getProductPrice())
+                        .setRate(populator.getProductRate())
+                        .build();
                 category.addProductToCategory(product);
             }
             store.addCategoryToList(category);

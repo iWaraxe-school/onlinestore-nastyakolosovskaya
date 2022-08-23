@@ -35,11 +35,6 @@ public class XmlParser {
 
                 if (nodeList.item(i).getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) nodeList.item(i);
-
-                 //   System.out.println("Sort name by: " + eElement.getElementsByTagName("name").item(0).getTextContent());
-                 //   System.out.println("Sort price by: " + eElement.getElementsByTagName("price").item(0).getTextContent());
-                 //   System.out.println("Sort rate by: " + eElement.getElementsByTagName("rate").item(0).getTextContent());
-
                     String sortField = eElement.getTagName();
                     String sortBy = eElement.getTextContent();
                     configMap.put(sortField, sortBy);

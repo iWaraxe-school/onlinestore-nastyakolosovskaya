@@ -11,9 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 public class SortHelper {
-
     Store store;
-
 
     public SortHelper(Store store) {
         this.store = store;
@@ -27,13 +25,15 @@ public class SortHelper {
                 case "name":
                     if (entry.getValue().equals("asc")){
                         allProductList.sort(new ProductNameComparator());
-                        System.out.println(i + "_Sorted by name: " + entry.getValue());
+                        System.out.println();
+                        System.out.println(i + ".Sorted by name: " + entry.getValue());
                         for (Product product: allProductList){
                             System.out.println(product);
                         }
                     }else{
                         allProductList.sort(new ProductNameComparator().reversed());
-                        System.out.println(i + "_Sorted by name: " + entry.getValue());
+                        System.out.println();
+                        System.out.println(i + ".Sorted by name: " + entry.getValue());
                         for (Product product: allProductList){
                             System.out.println(product);
                         }
@@ -44,13 +44,15 @@ public class SortHelper {
                 case "price":
                     if (entry.getValue().equals("asc")){
                         allProductList.sort(new ProductPriceComparator());
-                        System.out.println(i + "_Sorted by price: " + entry.getValue());
+                        System.out.println();
+                        System.out.println(i + ".Sorted by price: " + entry.getValue());
                         for (Product product: allProductList){
                             System.out.println(product);
                         }
                     }else{
                         allProductList.sort(new ProductPriceComparator().reversed());
-                        System.out.println(i + "_Sorted by price: " + entry.getValue());
+                        System.out.println();
+                        System.out.println(i + ".Sorted by price: " + entry.getValue());
                         for (Product product: allProductList){
                             System.out.println(product);
                         }
@@ -61,13 +63,15 @@ public class SortHelper {
                 case "rate":
                     if (entry.getValue().equals("asc")){
                         allProductList.sort(new ProductRateCompatator());
-                        System.out.println(i + "_Sorted by rate: " + entry.getValue());
+                        System.out.println();
+                        System.out.println(i + ".Sorted by rate: " + entry.getValue());
                         for (Product product: allProductList){
                             System.out.println(product);
                         }
                     }else{
                         allProductList.sort(new ProductRateCompatator().reversed());
-                        System.out.println(i + "_Sorted by rate: " + entry.getValue());
+                        System.out.println();
+                        System.out.println(i + ".Sorted by rate: " + entry.getValue());
                         for (Product product: allProductList){
                             System.out.println(product);
                         }
@@ -86,7 +90,7 @@ public class SortHelper {
                 {
                 allProductList.sort(new ProductPriceComparator().reversed());
                 System.out.println("---Top 5 most expensive products of Online Store---");
-                 allProductList.stream().limit(5).forEach(System.out::println);
+                allProductList.stream().limit(5).forEach(System.out::println);
             }
        }
 
@@ -95,6 +99,7 @@ public class SortHelper {
         Map <String, String > configMap = parser.xmlParser();
             System.out.println(configMap);
             List<Product> productsSortedByXML = sortedProductList(configMap);
+            System.out.println();
             System.out.println("---Sorted Products by XML config---");
             for (Product product: productsSortedByXML){
                 System.out.println(product);

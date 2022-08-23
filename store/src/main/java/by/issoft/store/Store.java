@@ -10,11 +10,21 @@ import java.util.stream.Collectors;
 
 public class Store {
 
-    private List<Category> categoryList = new ArrayList<>();
+    private final List<Category> categoryList = new ArrayList<>();
 
     public List<Category> getCategoryList() {
         return categoryList;
     }
+
+        public Store(){}
+
+        private static class SingletonHelper{
+            private static final Store STORE_INSTANCE = new Store();
+        }
+
+        public static Store getInstance(){
+            return SingletonHelper.STORE_INSTANCE;
+        }
 
     public void addCategoryToList(Category category) {
         categoryList.add(category);
