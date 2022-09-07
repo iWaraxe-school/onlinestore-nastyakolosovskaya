@@ -9,11 +9,15 @@ public class CommandInvoker {
     private final StoreCommand fillStore;
     private final StoreCommand printStore;
 
-    public CommandInvoker(StoreCommand fillStore, StoreCommand sortStore, StoreCommand getTopFive, StoreCommand printStore) {
+    private final StoreCommand orderProduct;
+
+    public CommandInvoker(StoreCommand fillStore, StoreCommand sortStore, StoreCommand getTopFive, StoreCommand orderProduct, StoreCommand printStore) {
         this.fillStore = fillStore;
         this.sortStore = sortStore;
         this.getTopFive = getTopFive;
+        this.orderProduct = orderProduct;
         this.printStore = printStore;
+
     }
     public void fillStore () throws ParserConfigurationException {
         fillStore.execute();
@@ -23,6 +27,10 @@ public class CommandInvoker {
     }
     public void TopFive() throws ParserConfigurationException {
         getTopFive.execute();
+    }
+
+    public void CreateOrder() throws ParserConfigurationException {
+        orderProduct.execute();
     }
     public void PrintStore() throws ParserConfigurationException {
         printStore.execute();
