@@ -26,7 +26,8 @@ public class StoreApp {
 
         invoker.fillStore();
 
-
+        Thread thread = new Thread(new CreateOrder(), "orderThread");
+        thread.start();
 
         Thread clearOrder = (new Thread(new ClearOrder(), "clearThread"));
         clearOrder.start();
@@ -47,8 +48,8 @@ public class StoreApp {
                 case  "order":
                      //thread.start();
                      //invoker.CreateOrder();
-                    Thread thread = new Thread(new CreateOrder(), "orderThread");
-                    thread.start();
+                    //Thread thread = new Thread(new CreateOrder(), "orderThread");
+                    //thread.start();
                     invoker.CreateOrder();
                 case "quit":
                     System.exit(0);
