@@ -6,7 +6,7 @@ import by.issoft.store.helpers.SortHelper;
 public class TopFiveExpensiveProducts implements StoreCommand {
 
     private final SortHelper topFive;
-    private final Store store = Store.getInstance();
+    private final Store store = Store.SingletonEnum.INSTANCE.getValue();
 
     public TopFiveExpensiveProducts(SortHelper sortHelper )  {
         this.topFive = sortHelper;

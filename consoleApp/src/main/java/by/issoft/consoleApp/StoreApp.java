@@ -3,7 +3,6 @@ package by.issoft.consoleApp;
 import by.issoft.store.Commands.*;
 import by.issoft.store.Store;
 import by.issoft.store.helpers.ClearOrder;
-import by.issoft.store.helpers.CreateOrder;
 import by.issoft.store.helpers.SortHelper;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -13,7 +12,9 @@ public class StoreApp {
 
     public static void main(String[] args) throws ParserConfigurationException {
 
-        Store onlineStore = Store.getInstance();
+        Store onlineStore = new Store();
+        Store.SingletonEnum singleton = Store.SingletonEnum.INSTANCE;
+        singleton.setValue(onlineStore);
         SortHelper sortHelper = new SortHelper(onlineStore);
 
         StoreCommand fillStore = new FillStore();
@@ -21,18 +22,16 @@ public class StoreApp {
         StoreCommand topFive = new TopFiveExpensiveProducts(sortHelper);
         StoreCommand orderProduct = new OrderProduct();
         StoreCommand printStore = new PrintStore(onlineStore);
+        StoreCommand exitApp = new ExitApp();
 
-        CommandInvoker invoker = new CommandInvoker(fillStore, sort, topFive, orderProduct, printStore);
+        CommandInvoker invoker = new CommandInvoker(fillStore, sort, topFive, orderProduct, printStore, exitApp);
 
         invoker.fillStore();
-
-        Thread thread = new Thread(new CreateOrder(), "orderThread");
-        thread.start();
 
         Thread clearOrder = (new Thread(new ClearOrder(), "clearThread"));
         clearOrder.start();
 
-        //invoker.PrintStore();
+        invoker.PrintStore();
 
         Scanner sc = new Scanner(System.in);
         String command;
@@ -46,13 +45,9 @@ public class StoreApp {
                     invoker.TopFive();
                     break;
                 case  "order":
-                     //thread.start();
-                     //invoker.CreateOrder();
-                    //Thread thread = new Thread(new CreateOrder(), "orderThread");
-                    //thread.start();
                     invoker.CreateOrder();
                 case "quit":
-                    System.exit(0);
+                    invoker.ExitApp();
                 default:
                     System.out.println("Command is not supported.");
                 }

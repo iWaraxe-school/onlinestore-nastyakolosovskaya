@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 public class ClearOrder extends TimerTask {
 
-    private final Store store = Store.getInstance();
+    private final Store store = Store.SingletonEnum.INSTANCE.getValue();
     @Override
     public void run() {
         while (true) {

@@ -5,10 +5,16 @@ import by.issoft.store.helpers.CreateOrder;
 
 public class OrderProduct implements StoreCommand{
 
-     private  CreateOrder createOrder = new CreateOrder();
+     private final CreateOrder createOrder = new CreateOrder();
 
     @Override
     public void execute()  {
-         createOrder.start();
+
+           createOrder.start();
+        try {
+            createOrder.join();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
