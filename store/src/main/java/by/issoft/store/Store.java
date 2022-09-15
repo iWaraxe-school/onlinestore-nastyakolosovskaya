@@ -25,20 +25,12 @@ public class Store {
     public Store(){
     }
 
-    public enum SingletonEnum {
-        INSTANCE;
-        Store store;
-        public Store getValue() {
-            return store;
-        }
-        public void setValue(Store store) {
-            this.store = store;
-        }
+    private static class SingletonHelper{
+        private static final Store STORE_INSTANCE = new Store();
     }
-
-        //public static Store getInstance(){
-        //    return SingletonHelper.STORE_INSTANCE;
-        //}
+       public static Store getInstance(){
+          return SingletonHelper.STORE_INSTANCE;
+        }
 
     public void addCategoryToList(Category category) {
         categoryList.add(category);

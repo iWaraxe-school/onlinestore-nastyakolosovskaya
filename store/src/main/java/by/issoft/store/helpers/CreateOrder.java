@@ -7,12 +7,12 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class CreateOrder extends Thread {
-    private final Store store = Store.SingletonEnum.INSTANCE.getValue();
+    private final Store store = Store.getInstance();
 
     @Override
     public void run() {
 
-        while (true) {
+        while (!Thread.currentThread().isInterrupted()) {
             Thread.currentThread().setName("orderThread");
             System.out.println("Thread name: " + Thread.currentThread().getName());
             Product purchasedProduct = store.getAllProducts().get(new Random().nextInt(10));
@@ -24,6 +24,7 @@ public class CreateOrder extends Thread {
                 TimeUnit.SECONDS.sleep(new Random().nextInt(30));
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
+
             }
         }
     }

@@ -12,9 +12,7 @@ public class StoreApp {
 
     public static void main(String[] args) throws ParserConfigurationException {
 
-        Store onlineStore = new Store();
-        Store.SingletonEnum singleton = Store.SingletonEnum.INSTANCE;
-        singleton.setValue(onlineStore);
+        Store onlineStore = Store.getInstance();
         SortHelper sortHelper = new SortHelper(onlineStore);
 
         StoreCommand fillStore = new FillStore();
