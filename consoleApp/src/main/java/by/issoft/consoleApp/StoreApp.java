@@ -7,6 +7,7 @@ import by.issoft.store.helpers.SortHelper;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.util.Scanner;
+import java.util.Timer;
 
 public class StoreApp {
 
@@ -26,14 +27,14 @@ public class StoreApp {
 
         invoker.fillStore();
 
-        Thread clearOrder = (new Thread(new ClearOrder(), "clearThread"));
-        clearOrder.start();
+        Timer timer = new Timer();
+        timer.schedule(new ClearOrder(),0,120_000);
 
         invoker.PrintStore();
 
         Scanner sc = new Scanner(System.in);
         String command;
-        while(sc.hasNext()){
+        while(sc.hasNext() ){
             command = sc.nextLine();
             switch (command) {
                 case "sort":
@@ -44,8 +45,10 @@ public class StoreApp {
                     break;
                 case  "order":
                     invoker.CreateOrder();
+                    break;
                 case "quit":
                     invoker.ExitApp();
+                    break;
                 default:
                     System.out.println("Command is not supported.");
                 }
