@@ -22,7 +22,7 @@ public class Store {
         return purchasedProductList;
     }
 
-    public Store(){
+    private Store(){
     }
 
     private static class SingletonHelper{
