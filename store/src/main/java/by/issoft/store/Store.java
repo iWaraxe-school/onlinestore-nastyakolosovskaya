@@ -6,24 +6,30 @@ import by.issoft.products.Product;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
 public class Store {
 
     private final List<Category> categoryList = new ArrayList<>();
+    private final CopyOnWriteArrayList<Product> purchasedProductList = new CopyOnWriteArrayList<>();
 
     public List<Category> getCategoryList() {
         return categoryList;
     }
 
-        public Store(){}
+    public CopyOnWriteArrayList<Product> getPurchasedProductList() {
+        return purchasedProductList;
+    }
 
-        private static class SingletonHelper{
-            private static final Store STORE_INSTANCE = new Store();
-        }
+    private Store(){
+    }
 
-        public static Store getInstance(){
-            return SingletonHelper.STORE_INSTANCE;
+    private static class SingletonHelper{
+        private static final Store STORE_INSTANCE = new Store();
+    }
+       public static Store getInstance(){
+          return SingletonHelper.STORE_INSTANCE;
         }
 
     public void addCategoryToList(Category category) {

@@ -2,10 +2,12 @@ package by.issoft.consoleApp;
 
 import by.issoft.store.Commands.*;
 import by.issoft.store.Store;
+import by.issoft.store.helpers.ClearOrder;
 import by.issoft.store.helpers.SortHelper;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.util.Scanner;
+import java.util.Timer;
 
 public class StoreApp {
 
@@ -17,16 +19,22 @@ public class StoreApp {
         StoreCommand fillStore = new FillStore();
         StoreCommand sort = new SortStore(sortHelper);
         StoreCommand topFive = new TopFiveExpensiveProducts(sortHelper);
+        StoreCommand orderProduct = new OrderProduct();
         StoreCommand printStore = new PrintStore(onlineStore);
+        StoreCommand exitApp = new ExitApp();
 
-        CommandInvoker invoker = new CommandInvoker(fillStore, sort, topFive, printStore );
+        CommandInvoker invoker = new CommandInvoker(fillStore, sort, topFive, orderProduct, printStore, exitApp);
 
         invoker.fillStore();
+
+        Timer timer = new Timer();
+        timer.schedule(new ClearOrder(),0,120_000);
+
         invoker.PrintStore();
 
         Scanner sc = new Scanner(System.in);
         String command;
-        while(sc.hasNext()){
+        while(sc.hasNext() ){
             command = sc.nextLine();
             switch (command) {
                 case "sort":
@@ -35,8 +43,12 @@ public class StoreApp {
                 case "top":
                     invoker.TopFive();
                     break;
+                case  "order":
+                    invoker.CreateOrder();
+                    break;
                 case "quit":
-                    System.exit(0);
+                    invoker.ExitApp();
+                    break;
                 default:
                     System.out.println("Command is not supported.");
                 }

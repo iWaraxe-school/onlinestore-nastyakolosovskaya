@@ -50,7 +50,7 @@ public class StoreHelper {
         for (Class<? extends Category> type : subTypes) {
             try {
                 Random random = new Random();
-                categoryMap.put(type.getConstructor().newInstance(), random.nextInt( 10)+1);
+                categoryMap.put(type.getConstructor().newInstance(), random.nextInt( 10)+5);
             } catch (NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
             }
