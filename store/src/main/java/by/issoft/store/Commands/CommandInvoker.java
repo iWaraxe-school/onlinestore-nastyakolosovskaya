@@ -1,6 +1,7 @@
 package by.issoft.store.Commands;
 
 import javax.xml.parsers.ParserConfigurationException;
+import java.sql.SQLException;
 
 public class CommandInvoker {
 
@@ -20,24 +21,28 @@ public class CommandInvoker {
         this.printStore = printStore;
         this.exitApp = exitApp;
     }
-    public void fillStore () throws ParserConfigurationException {
+
+    public void fillStore() throws ParserConfigurationException, SQLException {
         fillStore.execute();
     }
-    public void SortStore () throws ParserConfigurationException {
+
+    public void SortStore() throws ParserConfigurationException, SQLException {
         sortStore.execute();
     }
-    public void TopFive() throws ParserConfigurationException {
+
+    public void TopFive() throws ParserConfigurationException, SQLException {
         getTopFive.execute();
     }
 
-    public void CreateOrder() throws ParserConfigurationException {
+    public void CreateOrder() throws ParserConfigurationException, SQLException {
         orderProduct.execute();
     }
-    public void PrintStore() throws ParserConfigurationException {
+
+    public void PrintStore() throws ParserConfigurationException, SQLException {
         printStore.execute();
     }
 
-    public void ExitApp() throws ParserConfigurationException {
+    public void ExitApp() throws ParserConfigurationException, SQLException {
         exitApp.execute();
     }
 }

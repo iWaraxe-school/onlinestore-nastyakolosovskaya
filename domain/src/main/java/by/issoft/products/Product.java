@@ -37,7 +37,7 @@ public class Product {
             return Product.this;
         }
     }
-    public String getName() {
+    public String getCategoryName() {
         return name;
     }
 
@@ -55,7 +55,7 @@ public class Product {
     }
 
     public void getInfo() {
-        System.out.println("Product name: " + this.getName() + ", " +
+        System.out.println("Product name: " + this.getCategoryName() + ", " +
                 "Product price: " + this.getPrice() + ", " +
                 "Product rate: " + this.getRate());
     }
