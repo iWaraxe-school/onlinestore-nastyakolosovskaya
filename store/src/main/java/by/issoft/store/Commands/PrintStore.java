@@ -1,15 +1,19 @@
 package by.issoft.store.Commands;
 
-import by.issoft.store.Store;
+import by.issoft.store.helpers.DBHelper;
+
+import java.sql.SQLException;
 
 public class PrintStore implements StoreCommand {
-    private final Store store;
 
-    public PrintStore(Store store) {
-        this.store = store;
+    DBHelper dbHelper;
+
+    public PrintStore(DBHelper dbHelper) {
+        this.dbHelper = dbHelper;
     }
+
     @Override
-    public void execute() {
-        store.printStore();
+    public void execute() throws SQLException {
+        dbHelper.printProductTable();
     }
 }
