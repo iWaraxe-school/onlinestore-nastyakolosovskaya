@@ -2,9 +2,8 @@ package by.issoft.consoleApp;
 
 import by.issoft.store.Commands.*;
 import by.issoft.store.Store;
-import by.issoft.store.helpers.ClearOrder;
-import by.issoft.store.helpers.DBHelper;
-import by.issoft.store.helpers.SortHelper;
+import by.issoft.store.helpers.*;
+import by.issoft.store.helpers.HTTPHelpers.HttpServer;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.sql.SQLException;
@@ -40,6 +39,12 @@ public class StoreApp {
         timer.schedule(new ClearOrder(),0,120_000);
 
         invoker.PrintStore();
+
+        final int PORT = 8082;
+        HttpServer h = new HttpServer();
+        h.createHttpServer();
+        h.start();
+        System.out.println("Server is started and listening on port "+ PORT);
 
         Scanner sc = new Scanner(System.in);
         String command;
